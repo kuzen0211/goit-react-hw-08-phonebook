@@ -9,10 +9,12 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { authApi } from './auth/authApi';
 // import storage from 'redux-persist/lib/storage';
 // import { tasksReducer } from './tasks/slice';
 // import { authReducer } from './auth/slice';
 import { contactApi } from './contacts/contactApi';
+import persistedAuthSlice from './auth/auth.slice';
 
 // const middleware => [
 //   ...getDefaultMiddleware({
@@ -33,7 +35,10 @@ import { contactApi } from './contacts/contactApi';
 export const store = configureStore({
   reducer: {
     // auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistedAuthSlice,
     [contactApi.reducerPath]: contactApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
+
     // tasks: tasksReducer,
   },
   middleware: getDefaultMiddleware => [
@@ -43,6 +48,7 @@ export const store = configureStore({
       },
     }),
     contactApi.middleware,
+    authApi.middleware,
   ],
   devTools: process.env.NODE_ENV === 'development',
 });
