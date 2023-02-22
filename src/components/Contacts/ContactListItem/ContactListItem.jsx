@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import { DeleteBtn, Item } from './ContactListItem.styled';
-import {
-  useChangeContactMutation,
-  useDeleteContactMutation,
-} from '../../../redux/contacts/contactApi';
+import { useDeleteContactMutation } from '../../../redux/contacts/contactApi';
 import { ChangeContact } from '../ChangeContact/ChangeContact';
 
 export const ContactListItem = ({ id, name, number }) => {

@@ -2,9 +2,8 @@ import { useFetchContactsQuery } from '../../../redux/contacts/contactApi';
 import { useState } from 'react';
 import { ContactItem } from '../ContactItem/ContactItem';
 import { Filter } from '../Filter/Filter';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { useEffect } from 'react';
 import { setContacts } from '../../../redux/contacts/contactApi.slice';
 
 export const Contacts = () => {

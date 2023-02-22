@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthToken, selectAuthUser } from 'redux/auth/auth.selector';
 import { clearUserData } from 'redux/auth/auth.slice';
-import { useGetUserQuery, useLogOutMutation } from 'redux/auth/authApi';
 
 export const UserMenu = () => {
   const token = useSelector(selectAuthToken);

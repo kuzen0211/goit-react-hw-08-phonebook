@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   ContactFrm,
   FormLabel,
@@ -12,7 +12,6 @@ import { useChangeContactMutation } from 'redux/contacts/contactApi';
 
 export const ChangeContactForm = ({ id, toggleModal }) => {
   const contacts = useSelector(selectContact);
-  const dispatch = useDispatch();
 
   const [changeContact] = useChangeContactMutation();
 

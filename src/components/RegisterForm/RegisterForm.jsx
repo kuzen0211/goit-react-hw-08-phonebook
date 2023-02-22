@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { useLoginMutation, useRegistarationMutation } from 'redux/auth/authApi';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useRegistarationMutation } from 'redux/auth/authApi';
+
+import { Link } from 'react-router-dom';
 import Notiflix from 'notiflix';
-import { setToken, setLoggedIn, setUser } from '../../redux/auth/auth.slice';
+import { setToken, setLoggedIn } from '../../redux/auth/auth.slice';
 import { useDispatch } from 'react-redux';
 
 const year = new Date().getFullYear();
