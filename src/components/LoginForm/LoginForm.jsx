@@ -1,9 +1,8 @@
 import Notiflix from 'notiflix';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-import { useLoginMutation, useGetUserQuery } from 'redux/auth/authApi';
-import { store } from 'redux/store';
+import { useLoginMutation } from 'redux/auth/authApi';
+
 import { setToken, setLoggedIn, setUser } from '../../redux/auth/auth.slice';
 
 export const LoginForm = () => {
@@ -19,7 +18,6 @@ export const LoginForm = () => {
 
     try {
       await login({ email, password }).then(data => {
-        console.log(data.data);
         dispatch(setToken(data.data.token)); // Збереження токена в Redux Store
         dispatch(setLoggedIn(true)); // Позначення користувача як залогіненого
         dispatch(setUser(data.data.user.name));
@@ -31,8 +29,6 @@ export const LoginForm = () => {
 
   return (
     <>
-      {/* {status === STATUS.loading && <p>Loading ...</p>} */}
-
       <form style={{ width: '450px' }} onSubmit={handleSubmit}>
         <h1 className="h3 mb-3 fw-normal">Login page</h1>
 

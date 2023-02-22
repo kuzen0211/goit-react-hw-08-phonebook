@@ -15,6 +15,7 @@ import { authApi } from './auth/authApi';
 // import { authReducer } from './auth/slice';
 import { contactApi } from './contacts/contactApi';
 import persistedAuthSlice from './auth/auth.slice';
+import { contactsSlice } from './contacts/contactApi.slice';
 
 // const middleware => [
 //   ...getDefaultMiddleware({
@@ -36,6 +37,7 @@ export const store = configureStore({
   reducer: {
     // auth: persistReducer(authPersistConfig, authReducer),
     auth: persistedAuthSlice,
+    contacts: contactsSlice.reducer,
     [contactApi.reducerPath]: contactApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
 

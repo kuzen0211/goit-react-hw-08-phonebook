@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import { DeleteBtn, Item } from './ContactListItem.styled';
-import { useDeleteContactMutation } from '../../../redux/contacts/contactApi';
+import {
+  useChangeContactMutation,
+  useDeleteContactMutation,
+} from '../../../redux/contacts/contactApi';
+import { ChangeContact } from '../ChangeContact/ChangeContact';
 
 export const ContactListItem = ({ id, name, number }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
@@ -12,6 +16,7 @@ export const ContactListItem = ({ id, name, number }) => {
   return (
     <Item key={id}>
       {upperCaseWord(name)}: {number}
+      <ChangeContact id={id} />
       <DeleteBtn type="button" onClick={() => deleteContact(id)}>
         {isDeleting ? 'Deleting...' : 'Delete'}
       </DeleteBtn>
