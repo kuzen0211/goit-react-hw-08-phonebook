@@ -12,8 +12,6 @@ const year = new Date().getFullYear();
 export const RegisterForm = () => {
   const dispatch = useDispatch();
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const [isPass, setIsPass] = useState(true);
 
   const [registration] = useRegistarationMutation();
@@ -41,7 +39,6 @@ export const RegisterForm = () => {
 
   return (
     <>
-      {isLoading && <p>Loading</p>}
       <form action="#" style={{ width: '450px' }} onSubmit={handleSubmit}>
         <h1>Please Sign In</h1>
 
