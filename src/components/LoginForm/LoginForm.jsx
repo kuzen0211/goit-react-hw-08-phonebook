@@ -1,5 +1,6 @@
 import Notiflix from 'notiflix';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { useLoginMutation } from 'redux/auth/authApi';
 
@@ -7,6 +8,7 @@ import { setToken, setLoggedIn, setUser } from '../../redux/auth/auth.slice';
 
 export const LoginForm = () => {
   const [login] = useLoginMutation();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -18,12 +20,15 @@ export const LoginForm = () => {
 
     try {
       await login({ email, password }).then(data => {
-        dispatch(setToken(data.data.token)); // Збереження токена в Redux Store
-        dispatch(setLoggedIn(true)); // Позначення користувача як залогіненого
-        dispatch(setUser(data.data.user.name));
+        dispatch(
+          setToken(data.data.token),
+          setLoggedIn(true),
+          setUser(data.data.user.name)
+        );
       });
 
       Notiflix.Notify.success('Увійшов');
+      navigate('/contacts', { replace: true });
     } catch (error) {}
   };
 

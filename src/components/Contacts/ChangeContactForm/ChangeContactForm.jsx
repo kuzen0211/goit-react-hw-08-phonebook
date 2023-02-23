@@ -25,13 +25,14 @@ export const ChangeContactForm = ({ id, toggleModal }) => {
     return number;
   });
 
-  const handleSubmit = evt => {
+  const handleSubmit = async evt => {
     evt.preventDefault();
+    const updatedContact = { name, number };
 
-    // const updatedContact = { name number };
+    changeContact(id, updatedContact);
 
-    changeContact({ id });
     reset();
+
     toggleModal();
   };
 

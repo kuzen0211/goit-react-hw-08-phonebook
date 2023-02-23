@@ -1,20 +1,22 @@
 import { useState } from 'react';
 
-import { useRegistarationMutation } from 'redux/auth/authApi';
+import { useRegistarationMutation, useLoginMutation } from 'redux/auth/authApi';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Notiflix from 'notiflix';
-import { setToken, setLoggedIn } from '../../redux/auth/auth.slice';
+import { setToken, setLoggedIn, setUser } from '../../redux/auth/auth.slice';
 import { useDispatch } from 'react-redux';
 
 const year = new Date().getFullYear();
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isPass, setIsPass] = useState(true);
 
   const [registration] = useRegistarationMutation();
+  const [login] = useLoginMutation();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -26,12 +28,23 @@ export const RegisterForm = () => {
     try {
       await registration({ name, email, password }).then(data => {
         console.log(data);
-        dispatch(setToken(data.token));
-        dispatch(setLoggedIn(true));
+        dispatch(setToken(data.token), setLoggedIn(true), setUser(data.user));
+
         Notiflix.Notify.success(`Added contact ${name}`);
         e.currentTarget.reset();
         // dispatch(setUser(data.user.name));
       });
+    } catch (error) {}
+
+    try {
+      await login({ email, password }).then(data => {
+        dispatch(setToken(data.data.token)); // Збереження токена в Redux Store
+        dispatch(setLoggedIn(true)); // Позначення користувача як залогіненого
+        dispatch(setUser(data.data.user.name));
+      });
+
+      Notiflix.Notify.success('Увійшов');
+      navigate('/contacts', { replace: true });
     } catch (error) {}
   };
 
