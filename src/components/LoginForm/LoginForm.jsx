@@ -20,11 +20,8 @@ export const LoginForm = () => {
 
     try {
       await login({ email, password }).then(data => {
-        dispatch(
-          setToken(data.data.token),
-          setLoggedIn(true),
-          setUser(data.data.user.name)
-        );
+        dispatch(setToken(data.data.token), setLoggedIn(true));
+        dispatch(setUser(data.data.user.name));
       });
 
       Notiflix.Notify.success('Увійшов');

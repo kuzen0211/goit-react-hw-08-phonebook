@@ -28,7 +28,7 @@ export const RegisterForm = () => {
     try {
       await registration({ name, email, password }).then(data => {
         console.log(data);
-        dispatch(setToken(data.token), setLoggedIn(true), setUser(data.user));
+        dispatch(setToken(data.data.token), setLoggedIn(true));
 
         Notiflix.Notify.success(`Added contact ${name}`);
         e.currentTarget.reset();
@@ -38,8 +38,8 @@ export const RegisterForm = () => {
 
     try {
       await login({ email, password }).then(data => {
-        dispatch(setToken(data.data.token)); // Збереження токена в Redux Store
-        dispatch(setLoggedIn(true)); // Позначення користувача як залогіненого
+        console.log(data);
+        dispatch(setToken(data.data.token), setLoggedIn(true));
         dispatch(setUser(data.data.user.name));
       });
 
