@@ -10,9 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { authApi } from './auth/authApi';
-// import storage from 'redux-persist/lib/storage';
-// import { tasksReducer } from './tasks/slice';
-// import { authReducer } from './auth/slice';
+
 import { contactApi } from './contacts/contactApi';
 import persistedAuthSlice from './auth/auth.slice';
 import { contactsSlice } from './contacts/contactApi.slice';

@@ -28,13 +28,11 @@ export const RegisterForm = () => {
         console.log(data);
         dispatch(setToken(data.token));
         dispatch(setLoggedIn(true));
-
+        Notiflix.Notify.success(`Added contact ${name}`);
+        e.currentTarget.reset();
         // dispatch(setUser(data.user.name));
       });
     } catch (error) {}
-
-    Notiflix.Notify.success(`Added contact ${name}`);
-    e.currentTarget.reset();
   };
 
   return (

@@ -28,7 +28,7 @@ export const App = () => {
               <Route path="/contacts" element={<Contact />} />
             </Route>
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
+          {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>
       </Suspense>
     </>
